@@ -14,11 +14,11 @@ func main() {
 }
 
 func realMain() (result int) {
-	result = 0
+	innerresult = 0
 
 	defer func() {
 		if err := recover(); err != nil {
-			result = 1
+			innerresult = 1
 			fmt.Printf("%v\n", err)
 		}
 	}()
@@ -40,7 +40,7 @@ func realMain() (result int) {
 
 	if *showHttpPort {
 		fmt.Printf("%v", config.HTTP.GetPort())
-		result = 0
+		innerresult = 0
 		return
 	}
 
@@ -64,9 +64,9 @@ func realMain() (result int) {
 	}
 
 	if success {
-		result = 0
+		innerresult = 0
 	} else {
-		result = 1
+		innerresult = 1
 	}
 	return
 }

@@ -588,7 +588,7 @@ func (s *Server) authorize(w http.ResponseWriter, req *http.Request, requirePerm
 		return nil, true
 	}
 
-	if httpCode, errorMsg, authData := serviceauth.VerifyUserHasPermission(req, requirePermission); httpCode == http.StatusOK {
+	if httpCode, errorMsg, innerauthData := serviceauth.VerifyUserHasPermission(req, requirePermission); httpCode == http.StatusOK {
 		return authData, true
 	} else { // Not OK
 		if httpCode == http.StatusUnauthorized {
